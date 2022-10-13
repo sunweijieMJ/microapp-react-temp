@@ -1,0 +1,32 @@
+{
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "npm.packageManager": "pnpm",
+  "editor.tabSize": 2,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
+  },
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "eslint.probe": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "markdown"
+  ],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "markdown"
+  ],
+  "stylelint.validate": ["css", "postcss", "less", "scss", "sass"],
+  "i18n-ally.sourceLanguage": "zh-CN",
+  "i18n-ally.displayLanguage": "zh-CN",
+  "i18n-ally.enabledParsers": ["json"],
+  "i18n-ally.keystyle": "nested"
+}
