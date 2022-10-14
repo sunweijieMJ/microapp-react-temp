@@ -2,6 +2,7 @@
   "name": "microapp-react-temp",
   "version": "1.0.0",
   "private": true,
+  "packageManager": "pnpm@7.5.0",
   "engines": {
     "node": ">= 16"
   },
@@ -12,13 +13,14 @@
     "eject": "react-scripts eject",
     "cz": "git-cz",
     "format": "prettier --write .",
-    "cspell": "cspell **",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
-    "lint": "pnpm run lint:script && pnpm run lint:style && pretty-quick --check --branch dev",
-    "lint:fix": "pnpm run lint:script && pnpm run lint:style && pretty-quick --branch dev",
+    "lint": "pnpm run lint:script && pnpm run lint:style && pnpm run lint:cspell && pretty-quick --check --branch dev",
+    "lint:fix": "pnpm run lint:script && pnpm run lint:style && pnpm run lint:cspell && pretty-quick --branch dev",
+    "lint:cspell": "cspell **",
     "lint:script": "eslint . --ext .js,.ts,.jsx,.tsx",
-    "lint:style": "stylelint 'src/**/*.{css,scss,less}'",
-    "prepare": "husky install"
+    "lint:style": "stylelint 'src/**/*.{css,scss,less}' --fix",
+    "prepare": "husky install",
+    "preinstall": "npx only-allow pnpm -y"
   },
   "config": {
     "commitizen": {
@@ -27,7 +29,7 @@
   },
   "lint-staged": {
     "*": [
-      "pnpm run cspell"
+      "pnpm run lint:cspell"
     ],
     "*.{js,jsx,ts,tsx}": [
       "pnpm run lint:script"
@@ -37,11 +39,15 @@
     ]
   },
   "dependencies": {
+    "@redux-devtools/extension": "^3.2.3",
     "antd": "^4.23.5",
     "qiankun": "^2.8.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^8.0.4",
     "react-router-dom": "^6.4.2",
+    "redux": "^4.2.0",
+    "redux-saga": "^1.2.1",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
