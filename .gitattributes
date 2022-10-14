@@ -1,0 +1,4 @@
+# Treat all files without a CR
+# * text eol=lf
+Dockerfile text eol=lf
+*.sh text eol=lf
