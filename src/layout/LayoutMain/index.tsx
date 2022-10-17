@@ -1,6 +1,6 @@
-import {
-  loadMicroApp, // 手动加载一个微应用
-} from 'qiankun';
+import classnames from 'classnames';
+import _ from 'lodash';
+import { loadMicroApp } from 'qiankun';
 import React, { useEffect } from 'react';
 import microApps from '../../config/microApps';
 import LayoutAside from '../LayoutAside';
@@ -15,7 +15,7 @@ const microAppList = microApps;
 
 // 手动加载子应用
 const manualLoadMicroApps = (name: string) => {
-  const microApp = microAppList.find((item) => item.name === name);
+  const microApp = _.find(microAppList, (item) => item.name === name);
 
   if (microApp) {
     activeName = name;
@@ -49,10 +49,9 @@ const Layout: React.FC = () => {
           <div
             id={item.name}
             key={index}
-            className={[
-              'micro-app',
-              activeName === item.name ? 'active-app' : '',
-            ].join(' ')}
+            className={classnames('micro-app', {
+              'active-app': activeName === item.name,
+            })}
           ></div>
         );
       })}

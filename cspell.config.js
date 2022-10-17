@@ -482,7 +482,7 @@ module.exports = {
     'lnglats',
     'loadtest',
     'localforage',
-    'localstorage',
+    'localStorage',
     'lodash',
     'login',
     'long',
@@ -1091,5 +1091,6 @@ module.exports = {
     'docs/**',
     'packages/**/*',
     'public/**/*',
+    'src/utils/**/*',
   ],
 };

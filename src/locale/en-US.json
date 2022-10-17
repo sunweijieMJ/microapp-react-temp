@@ -1,4 +1,7 @@
 {
   "layout.header": "header",
-  "layout.aside": "aside"
+  "layout.aside": "aside",
+  "api.fail": "fail",
+  "api.retry": "loading",
+  "api.timeout": "timeout"
 }

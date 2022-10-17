@@ -89,6 +89,7 @@ module.exports = defineConfig({
     'plugin:@typescript-eslint/recommended',
     'react-app',
     'react-app/jest',
+    'plugin:markdown/recommended',
     'plugin:prettier/recommended',
   ],
   plugins: ['@typescript-eslint', 'prettier', 'import', 'html'],
