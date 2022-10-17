@@ -1,5 +1,10 @@
+export enum MicroAppName {
+  'micro-fp',
+  'micro-opod',
+}
+
 export type MicroApp = {
-  name: 'micro-vue' | 'micro-react';
+  name: keyof typeof MicroAppName;
   activeRule: string | string[];
   container: string;
   entry: string;
@@ -8,15 +13,15 @@ export type MicroApp = {
 
 export const microApps: MicroApp[] = [
   {
-    name: 'micro-vue',
-    activeRule: ['/micro-vue'],
-    container: '#micro-vue',
+    name: 'micro-fp',
+    activeRule: ['/micro-fp'],
+    container: '#micro-fp',
     entry: 'http://localhost:3001/',
   },
   {
-    name: 'micro-react',
-    activeRule: ['/micro-react'],
-    container: '#micro-react',
+    name: 'micro-opod',
+    activeRule: ['/micro-opod'],
+    container: '#micro-opod',
     entry: 'http://localhost:3002/',
   },
 ];

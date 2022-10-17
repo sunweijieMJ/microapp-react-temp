@@ -46,6 +46,25 @@ const rules = {
   'no-nested-ternary': 'off', // 不允许嵌套的三元表达式
   'no-continue': 'off', // 不允许continue
   'no-control-regex': ['off'], // 禁止在正则表达式中使用控制字符
+
+  'sort-imports': [
+    // import 排序
+    2,
+    {
+      ignoreCase: true,
+      ignoreDeclarationSort: true,
+    },
+  ],
+  'import/order': [
+    2,
+    {
+      alphabetize: {
+        order: 'asc',
+        caseInsensitive: true,
+      },
+      'newlines-between': 'never',
+    },
+  ],
 };
 
 module.exports = defineConfig({

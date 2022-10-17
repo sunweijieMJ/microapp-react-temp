@@ -1,13 +1,11 @@
-import React, { useEffect } from 'react';
 import {
   loadMicroApp, // 手动加载一个微应用
 } from 'qiankun';
-
+import React, { useEffect } from 'react';
 import microApps from '../../config/microApps';
-
-import LayoutNav from '../LayoutNav';
 import LayoutAside from '../LayoutAside';
 import LayoutHeader from '../LayoutHeader';
+import LayoutNav from '../LayoutNav';
 import './index.scss';
 
 // loadMicroApp的实例对象

@@ -1,6 +1,6 @@
+import { composeWithDevTools } from '@redux-devtools/extension';
 import { applyMiddleware, legacy_createStore as createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import { composeWithDevTools } from '@redux-devtools/extension';
 import rootReducer from '../reducers';
 import rootSaga from '../saga';
 

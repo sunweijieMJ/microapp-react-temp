@@ -1,6 +1,8 @@
 import React from 'react';
-import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom/client';
+import { IntlProvider } from 'react-intl';
+import { Provider } from 'react-redux';
+import Locale from './locale';
 import reportWebVitals from './reportWebVitals';
 import Router from './router';
 import configureStore from './store';
@@ -14,11 +16,16 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <Provider store={store}>
-    <React.StrictMode>
-      <Router />
-    </React.StrictMode>
-  </Provider>
+  <React.StrictMode>
+    <Provider store={store}>
+      <IntlProvider
+        locale={Locale.locale}
+        messages={Locale.messages[Locale.locale]}
+      >
+        <Router />
+      </IntlProvider>
+    </Provider>
+  </React.StrictMode>
 );
 
 reportWebVitals();
