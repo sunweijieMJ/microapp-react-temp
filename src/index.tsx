@@ -4,8 +4,8 @@ import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 import reportWebVitals from './reportWebVitals';
 import Locale from '@/plugins/locale';
+import configureStore from '@/plugins/redux';
 import Router from '@/router';
-import configureStore from '@/store';
 import './index.scss';
 
 const store = configureStore();

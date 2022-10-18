@@ -5,12 +5,19 @@
 ## 功能清单
 
 - [x] `api` 封装
-- [ ] `components` 组件
+- [x] `assets` 静态资源
+- [x] `components` 组件
+- [x] `config` 配置项
+- [x] `hooks` hooks
+- [x] `layout` 基座
 - [x] `locale` 国际化
+- [x] `modules` 业务模块
+- [x] `pages` 页面
+- [x] `plugins` 插件
+- [x] `router` 路由
 - [x] `saga` redux-saga
+- [x] `types` 类型声明
 - [x] `utils` 工具类
-- [ ] `scss` 变量、暗黑模式
-- [ ] `eslint`， `stylelint`， `prettier` 等配置文件
 
 ## 目录结构
 
@@ -23,17 +30,18 @@
 |
 ├── src # 源代码
 | ├── api
-| ├── actions
 | ├── assets
 | ├── components
 | ├── config
+| ├── hooks
 | ├── layout
 | ├── locale
-| ├── plugin
+| ├── plugins
 | ├── reducers
 | ├── router
 | ├── saga
-| ├── store
+| ├── types
+| ├── utils
 | |
 | ├── index.scss
 | ├── index.tsx
@@ -54,6 +62,7 @@
 ├── .stylelintignore
 ├── .stylelintrc.js
 ├── commitlint.config.js
+├── config.overrides.js
 ├── cspell.config.js
 ├── package.json
 ├── README.md
