@@ -7,7 +7,6 @@
 - [x] `api` 封装
 - [x] `assets` 静态资源
 - [x] `components` 组件
-- [x] `config` 配置项
 - [x] `hooks` hooks
 - [x] `layout` 基座
 - [x] `locale` 国际化
@@ -24,9 +23,11 @@
 ```md
 ├── .husky githooks 配置
 ├── .vscode 工作区配置
-├── public # 静态资源
-| ├── config.js # 配置文件
-| ├── favicon.ico # favicon 图标
+├── config 配置项
+├── public 静态资源
+| ├── config.js 配置文件
+| ├── favicon.ico favicon 图标
+| ├── index.html 入口文件
 |
 ├── src # 源代码
 | ├── api

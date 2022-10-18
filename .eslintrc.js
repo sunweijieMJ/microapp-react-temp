@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { defineConfig } = require('eslint-define-config');
 
 const rules = {
@@ -94,6 +93,12 @@ module.exports = defineConfig({
   ],
   plugins: ['@typescript-eslint', 'prettier', 'import', 'html'],
   overrides: [
+    {
+      files: ['*.js'],
+      rules: {
+        '@typescript-eslint/no-var-requires': 'off',
+      },
+    },
     {
       files: ['*.js', '*.jsx', '*.ts', '*.tsx'],
       rules: {

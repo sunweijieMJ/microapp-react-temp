@@ -1079,6 +1079,7 @@ module.exports = {
     '.babelrc.js',
     'Jenkinsfile_web_package',
     './src/shared/main/sprite.scss',
+    '.gitignore',
     '.eslintrc.js',
     'deploy.md',
     'lib/**/*',
