@@ -1,5 +1,5 @@
-import enUS from './en-US.json';
-import zhCN from './zh-CN.json';
+import enUS from '@/locale/en-US.json';
+import zhCN from '@/locale/zh-CN.json';
 
 enum LocalList {
   'zh-CN',
@@ -18,4 +18,5 @@ const Locale: ILocale = {
     'en-US': enUS,
   },
 };
+
 export default Locale;

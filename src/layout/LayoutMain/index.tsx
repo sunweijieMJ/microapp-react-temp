@@ -2,10 +2,10 @@ import classnames from 'classnames';
 import _ from 'lodash';
 import { loadMicroApp } from 'qiankun';
 import React, { useEffect } from 'react';
-import microApps from '../../config/microApps';
 import LayoutAside from '../LayoutAside';
 import LayoutHeader from '../LayoutHeader';
 import LayoutNav from '../LayoutNav';
+import microApps from '@/config/microApps';
 import './index.scss';
 
 // loadMicroApp的实例对象

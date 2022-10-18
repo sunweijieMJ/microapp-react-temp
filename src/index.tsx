@@ -2,11 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
-import Locale from './locale';
 import reportWebVitals from './reportWebVitals';
-import Router from './router';
-import configureStore from './store';
-
+import Locale from '@/plugins/locale';
+import Router from '@/router';
+import configureStore from '@/store';
 import './index.scss';
 
 const store = configureStore();

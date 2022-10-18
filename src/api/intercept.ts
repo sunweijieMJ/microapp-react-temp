@@ -1,11 +1,11 @@
 import axios from 'axios';
 import type { AxiosRequestConfig, Canceler } from 'axios';
 import { defineMessage } from 'react-intl';
+import type { CustomRequestConfig } from './types';
 import {
   showFullScreenLoading,
   tryHideFullScreenLoading,
-} from '../utils/loading';
-import type { CustomRequestConfig } from './types';
+} from '@/utils/loading';
 
 // 定义接口
 type PendingList = Pick<

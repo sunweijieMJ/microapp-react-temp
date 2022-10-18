@@ -3,10 +3,10 @@
  */
 import { message } from 'antd';
 import { defineMessage } from 'react-intl';
-import storage from '../utils/storage';
 import translUrlDict from './config';
 import instance from './intercept';
 import type { CustomRequestConfig, CustomResponse } from './types';
+import storage from '@/utils/storage';
 
 class Abstract {
   protected baseURL = '';

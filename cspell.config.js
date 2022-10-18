@@ -481,7 +481,6 @@ module.exports = {
     'lnglat',
     'lnglats',
     'loadtest',
-    'localforage',
     'localStorage',
     'lodash',
     'login',
