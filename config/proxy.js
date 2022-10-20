@@ -1,5 +1,9 @@
+/**
+ * 开发代理
+ */
 const proxy = () => () => {
   return {
+    https: false,
     headers: {
       'Access-Control-Allow-Origin': '*',
     },
