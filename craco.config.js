@@ -60,11 +60,7 @@ module.exports = {
         if (process.env.ANALYZER) {
           webpackConfig.plugins.push(
             // 打包产物分析
-            new BundleAnalyzerPlugin({
-              analyzerMode: 'static',
-              openAnalyzer: true,
-              reportFilename: resolve('analyzer/index.html'),
-            })
+            new BundleAnalyzerPlugin()
           );
         }
       }
