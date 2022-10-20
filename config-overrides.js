@@ -5,12 +5,16 @@ const {
   addWebpackAlias,
   addWebpackResolve,
   overrideDevServer,
+  adjustStyleLoaders,
+  addWebpackPlugin,
 } = require('customize-cra');
+const webpack = require('webpack');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const envConfig = require('./config/env');
 const { proxy } = require('./config/proxy');
 
 const timeStamp = Date.now();
 const isDev = process.env.NODE_ENV === 'development';
-
 const resolve = (dir) => path.join(__dirname, '.', dir);
 
 module.exports = {
@@ -28,6 +32,24 @@ module.exports = {
     addWebpackAlias({
       '@': resolve('src'),
     }),
+    addWebpackPlugin(
+      // 注入环境变量
+      new webpack.DefinePlugin({
+        'process.env.MICRO_APP': JSON.stringify(envConfig.microApps),
+      })
+    ),
+    // scss设置全局变量、函数
+    adjustStyleLoaders((rule) => {
+      if (rule.test.toString().includes('scss')) {
+        rule.use.push({
+          loader: require.resolve('sass-resources-loader'),
+          options: {
+            resources: ['./src/assets/scss/base.scss'],
+          },
+        });
+      }
+    }),
+    // 自定义配置
     (config) => {
       if (isDev) {
         config.devtool = 'source-map';
@@ -38,6 +60,11 @@ module.exports = {
             patterns: [{ from: './src/locale', to: './locale' }],
           })
         );
+
+        // 分析依赖包
+        if (process.env.ANALYZER) {
+          config.plugins.push(new BundleAnalyzerPlugin());
+        }
 
         // 代码分割
         config.optimization.splitChunks = {
@@ -53,7 +80,7 @@ module.exports = {
           },
         };
 
-        // 打包编译文件名称[hash.版本号.时间戳]
+        // 打包编译文件名称[hash.时间戳]
         config.output.filename = `static/js/[name].t${timeStamp}.js`;
         config.output.chunkFilename = `static/js/[name].t${timeStamp}.js`;
       }
