@@ -1,12 +1,10 @@
 # 1.0.0 (2022-10-20)
 
-
-### Bug Fixes
+## Bug Fixes
 
 * 删除冗余 ([e35ef3c](https://github.com/sunweijieMJ/microapp-react-temp/commit/e35ef3cbf2224f15cfa2f98575285401c1573e36))
 
-
-### Features
+## Features
 
 * 封装axios ([f9d551b](https://github.com/sunweijieMJ/microapp-react-temp/commit/f9d551b7c78c7a925e4c2d3e91edb6f9d7e58090))
 * 加入多语言 ([08c31f6](https://github.com/sunweijieMJ/microapp-react-temp/commit/08c31f65ec6b7a1f18a562d09ab1eeebbf585018))
@@ -19,6 +17,3 @@
 * 添加webpack-bundle-analyzer ([f2904c0](https://github.com/sunweijieMJ/microapp-react-temp/commit/f2904c0d21ea8fe7e5da430eb97aa3d9ad2ae6ca))
 * 自定义config ([944ae43](https://github.com/sunweijieMJ/microapp-react-temp/commit/944ae43e34a5608d9a73b7c3b776e088687beacd))
 * project init ([26e750f](https://github.com/sunweijieMJ/microapp-react-temp/commit/26e750fd7075f7caace36e5c32fbd2ee3285e42f))
-
-
-

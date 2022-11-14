@@ -1,5 +1,5 @@
 /**
- * 获取命令行变量
+ * 获取终端启动参数
  */
 const argv = process.argv ?? [];
 const inputArgv = argv.slice(2);
