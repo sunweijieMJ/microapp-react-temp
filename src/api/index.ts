@@ -1,3 +1,3 @@
-import basicApi from './modules/basic';
+import UserService from './modules/user';
 
-export { basicApi };
+export { UserService };

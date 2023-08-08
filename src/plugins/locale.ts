@@ -1,21 +1,27 @@
+import antdEnUS from 'antd/locale/en_US';
+import antdZhCN from 'antd/locale/zh_CN';
+import type { LocaleKey } from '@/interface';
 import enUS from '@/locale/en-US.json';
 import zhCN from '@/locale/zh-CN.json';
 
-enum LocalList {
-  'zh-CN',
-  'en-US',
-}
-type LocalKey = keyof typeof LocalList;
-type ILocale = {
-  locale: LocalKey;
-  messages: Record<LocalKey, Record<string, string>>;
+export type ILocale = {
+  locale: LocaleKey;
+  messages: Record<LocaleKey, any>;
 };
 
+const curLang = 'zh-CN';
+
 const Locale: ILocale = {
-  locale: 'zh-CN',
+  locale: curLang,
   messages: {
-    'zh-CN': zhCN,
-    'en-US': enUS,
+    'zh-CN': {
+      antd: antdZhCN,
+      ...zhCN,
+    },
+    'en-US': {
+      antd: antdEnUS,
+      ...enUS,
+    },
   },
 };
 

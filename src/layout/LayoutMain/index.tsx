@@ -136,7 +136,7 @@ const Layout: React.FC = () => {
     // 重置子应用数组
     if (!window.activatedMicroApp?.length) window.activatedMicroApp = [];
 
-    manualLoadMicroApps(defaultPath);
+    // manualLoadMicroApps(defaultPath);
   }, []);
 
   return (
