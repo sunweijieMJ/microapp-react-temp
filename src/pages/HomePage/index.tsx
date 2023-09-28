@@ -9,11 +9,7 @@ const HomePage: React.FC = () => {
     //
   }, [dispatch]);
 
-  return (
-    <div className={cssModule.HomePage}>
-      HomePage
-    </div>
-  );
+  return <div className={cssModule.HomePage}>HomePage</div>;
 };
 
 export default HomePage;

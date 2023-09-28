@@ -21,6 +21,6 @@ declare global {
        * 前端页面地址
        */
       REACT_APP_WebURL: string;
-    }
+    };
   }
 }
