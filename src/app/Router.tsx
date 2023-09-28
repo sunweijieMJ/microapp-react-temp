@@ -1,4 +1,3 @@
-import { Skeleton } from 'antd';
 import { lazy, Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -10,6 +9,7 @@ import {
   useSearchParams,
 } from 'react-router-dom';
 import { Md5 } from 'ts-md5';
+import LayoutSkeleton from '@/components/LayoutSkeleton';
 import Loading from '@/components/Loading';
 import StaticFunction from '@/components/StaticFunction';
 import { triggerLoginAction } from '@/redux/actions/user';
@@ -115,7 +115,7 @@ export const GetRoutes = () => {
 function Router() {
   return (
     <BrowserRouter>
-      <Suspense fallback={<Skeleton active />}>
+      <Suspense fallback={<LayoutSkeleton />}>
         <StaticFunction />
         <SecretFreeLogin />
         <GetRoutes />

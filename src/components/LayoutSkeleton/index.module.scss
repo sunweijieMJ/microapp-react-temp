@@ -1,0 +1,31 @@
+.LayoutSkeletonWrap {
+  display: grid;
+  grid-template:
+    'header' min-content
+    'main';
+  min-width: $minWidth;
+  min-height: 100vh;
+}
+
+.SkeletonHeader {
+  grid-area: header;
+  height: 40px;
+  padding: 10px;
+
+  :global(.ant-skeleton),
+  :global(.ant-skeleton-button) {
+    width: 100%;
+    height: 100% !important;
+  }
+}
+
+.SkeletonMain {
+  grid-area: main;
+  padding: 10px;
+
+  :global(.ant-skeleton),
+  :global(.ant-skeleton-button) {
+    width: 100%;
+    height: 100% !important;
+  }
+}
