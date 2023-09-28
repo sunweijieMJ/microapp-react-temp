@@ -5,11 +5,13 @@ import {
 import { App, ConfigProvider } from 'antd';
 import { useEffect, useMemo } from 'react';
 import ReactDOM from 'react-dom/client';
+import { ErrorBoundary } from 'react-error-boundary';
 import { IntlProvider } from 'react-intl';
 import { Provider, useDispatch, useSelector } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { token } from './AntdToken';
 import Router from './Router';
+import ErrorFallback from '@/components/ErrorFallback';
 import Loading from '@/components/Loading';
 import dayjs from '@/plugins/dayjs';
 import { Locale } from '@/plugins/locale';
@@ -93,7 +95,9 @@ const AppContainer = () => {
 root.render(
   <Provider store={store}>
     <PersistGate loading={<Loading />} persistor={persistor}>
-      <AppContainer />
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <AppContainer />
+      </ErrorBoundary>
     </PersistGate>
   </Provider>
 );

@@ -1,15 +1,33 @@
-export type ExpireObj = {
-  value: string;
-  time: string | number | Date;
-};
+import { SheetName } from '@/interface';
+
+/**
+ * 表格表头key集合
+ */
+const sheetTitleKeys = (Object.keys(SheetName) as (keyof typeof SheetName)[])
+  .filter((key) => isNaN(Number(key)))
+  .map((key) => `${key}-sheetKeyMaps` as const);
+
+/**
+ * 表格数据key集合
+ */
+const sheetDataKeys = (Object.keys(SheetName) as (keyof typeof SheetName)[])
+  .filter((key) => isNaN(Number(key)))
+  .map((key) => `${key}-sheetData` as const);
 
 /**
  * 显示声明localStorage的键
  */
 export const LocaleStorageKeys = [
   'session_id', // 登录态
+  ...sheetTitleKeys,
+  ...sheetDataKeys,
 ] as const;
 type LocaleStorageKeysType = (typeof LocaleStorageKeys)[number];
+
+export type ExpireObj = {
+  value: string;
+  time: string | number | Date;
+};
 
 /**
  * @description LocalStorage的封装

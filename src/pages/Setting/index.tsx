@@ -5,21 +5,30 @@ import React, { useEffect, useState } from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 import { useLocation, useNavigate } from 'react-router';
 import { useSearchParams } from 'react-router-dom';
-import MohoSetting from './components/MohoSetting';
+import GlobalSetting from './components/GlobalSetting';
+import SheetSetting from './components/SheetSetting';
 import cssModule from './index.module.scss';
 import { KEYS } from './interface';
 
 const MESSAGES = defineMessages({
-  Moho: {
+  globalTitle: {
     id: 'Setting_index_8e8aaafe',
     defaultMessage: '全局配置',
+  },
+  sheetTitle: {
+    id: 'Setting_index_e6c48956',
+    defaultMessage: '表格配置',
   },
 });
 
 const settingNavList: MenuProps['items'] = [
   {
-    label: <FormattedMessage {...MESSAGES.Moho} />,
-    key: KEYS.MOHO,
+    label: <FormattedMessage {...MESSAGES.globalTitle} />,
+    key: KEYS.GLOBAL,
+  },
+  {
+    label: <FormattedMessage {...MESSAGES.sheetTitle} />,
+    key: KEYS.SHEET,
   },
 ];
 
@@ -54,8 +63,10 @@ const Setting: React.FC<IProps> = (props) => {
   const renderMainArea = () => {
     const key = selectedKeys?.join('');
     switch (key) {
-      case KEYS.MOHO:
-        return <MohoSetting />;
+      case KEYS.GLOBAL:
+        return <GlobalSetting />;
+      case KEYS.SHEET:
+        return <SheetSetting />;
       default:
         return <>暂无内容</>;
     }

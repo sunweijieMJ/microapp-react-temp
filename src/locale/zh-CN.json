@@ -1,4 +1,6 @@
 {
+  "GlobalSetting_index_4b9c3271": "重置",
+  "GlobalSetting_index_e83a256e": "确认",
   "HeaderAvatar_index_44efd179": "退出登录",
   "HeaderAvatar_index_d03b4a74": "确认退出登录吗",
   "HeaderLogo_index_81ca0e14": "图像围栏",
@@ -10,10 +12,9 @@
   "Login_index_819767ad": "用户名",
   "Login_index_a8105204": "密码",
   "Login_index_e39ffe99": "请输入密码",
-  "MohoSetting_index_4b9c3271": "重置",
-  "MohoSetting_index_e83a256e": "确认",
   "NotFound_index_4f4adcbf": "404",
   "Setting_index_8e8aaafe": "全局配置",
+  "Setting_index_e6c48956": "表格配置",
   "saga_system_b12412ca": "高级模式已开启",
   "saga_user_71fa3bd0": "登录成功",
   "saga_user_adfb20e4": "登出成功"

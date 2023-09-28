@@ -12,7 +12,7 @@ interface IProps {
   className?: string;
 }
 
-const MohoSetting: React.FC<IProps> = function (props) {
+const GlobalSetting: React.FC<IProps> = function (props) {
   const { className } = props;
 
   const { message } = App.useApp();
@@ -58,13 +58,13 @@ const MohoSetting: React.FC<IProps> = function (props) {
           <Button htmlType="reset">
             <FormattedMessage
               defaultMessage="重置"
-              id="MohoSetting_index_4b9c3271"
+              id="GlobalSetting_index_4b9c3271"
             />
           </Button>
           <Button type="primary" htmlType="submit">
             <FormattedMessage
               defaultMessage="确认"
-              id="MohoSetting_index_e83a256e"
+              id="GlobalSetting_index_e83a256e"
             />
           </Button>
         </Space>
@@ -73,8 +73,4 @@ const MohoSetting: React.FC<IProps> = function (props) {
   );
 };
 
-MohoSetting.defaultProps = {
-  className: '',
-};
-
-export default MohoSetting;
+export default GlobalSetting;

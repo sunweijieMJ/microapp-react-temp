@@ -1,3 +1,4 @@
 export enum KEYS {
-  MOHO = 'Moho',
+  GLOBAL = 'GLOBAL',
+  SHEET = 'SHEET',
 }
