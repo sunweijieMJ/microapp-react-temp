@@ -1,0 +1,18 @@
+.LayoutHeaderLeft {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  .LayoutHeaderLogoImg {
+    max-width: 200px;
+    max-height: 33px;
+  }
+
+  .LayoutHeaderLogoText {
+    margin-left: 15px;
+    color: $baseTextColor;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 20px;
+  }
+}

@@ -1,0 +1,30 @@
+.LayoutHeaderNavWrap {
+  display: flex;
+  align-items: center;
+  height: inherit;
+
+  .LayoutHeaderNav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: inherit;
+    padding: 0 28px;
+    cursor: pointer;
+
+    .LayoutHeaderNavText {
+      color: $baseTextColor;
+      font-size: 16px;
+      font-weight: 700;
+    }
+  }
+
+  .LayoutHeaderNav:hover:not(.LayoutHeaderNavActive) {
+    .LayoutHeaderNavText {
+      color: $colorPrimary;
+    }
+  }
+
+  .LayoutHeaderNavActive {
+    background-color: $colorPrimary;
+  }
+}

@@ -4,6 +4,14 @@ export type ExpireObj = {
 };
 
 /**
+ * 显示声明localStorage的键
+ */
+export const LocaleStorageKeys = [
+  'session_id', // 登录态
+] as const;
+type LocaleStorageKeysType = (typeof LocaleStorageKeys)[number];
+
+/**
  * @description LocalStorage的封装
  */
 class LocalStorageAPI {
@@ -12,12 +20,12 @@ class LocalStorageAPI {
    * @param key 键
    * @param value 值
    */
-  static set(key: string, value: string) {
+  static set(key: LocaleStorageKeysType, value: string) {
     try {
       localStorage.setItem(key, value);
     } catch (e: any) {
       if (e.name === 'QuotaExceededError') {
-        throw new Error('Out of Memory Limit Localstorage');
+        throw new Error('Out of Memory Limit localStorage');
       } else {
         throw new Error(e.name);
       }
@@ -28,7 +36,7 @@ class LocalStorageAPI {
    * @description 获取localStorage
    * @param key 键
    */
-  static get(key: string) {
+  static get(key: LocaleStorageKeysType) {
     return localStorage.getItem(key) ?? '';
   }
 
@@ -36,7 +44,7 @@ class LocalStorageAPI {
    * @description 移除localStorage
    * @param key 键
    */
-  static remove(key: string) {
+  static remove(key: LocaleStorageKeysType) {
     localStorage.removeItem(key);
   }
 
@@ -46,7 +54,11 @@ class LocalStorageAPI {
    * @param value 值
    * @param expire 过期时间
    */
-  static setExpire(key: string, value: string, expire: ExpireObj['time']) {
+  static setExpire(
+    key: LocaleStorageKeysType,
+    value: string,
+    expire: ExpireObj['time']
+  ) {
     let expireTime = '';
     if (expire) {
       expireTime = new Date(expire).toString();
@@ -62,7 +74,7 @@ class LocalStorageAPI {
    * @description 获取localStorage(含过期时间)
    * @param key 键
    */
-  static getExpire(key: string) {
+  static getExpire(key: LocaleStorageKeysType) {
     try {
       const dataObj: ExpireObj = JSON.parse(LocalStorageAPI.get(key));
       if (new Date(dataObj.time).getTime() - new Date().getTime() > 0) {

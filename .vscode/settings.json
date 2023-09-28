@@ -7,6 +7,15 @@
   },
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "eslint.probe": [
     "javascript",
     "javascriptreact",
@@ -29,5 +38,5 @@
   "i18n-ally.enabledParsers": ["json"],
   "i18n-ally.enabledFrameworks": ["react"],
   "i18n-ally.localesPaths": ["src/locale"],
-  "i18n-ally.keystyle": "flat"
+  "i18n-ally.keystyle": "nested"
 }

@@ -1,0 +1,21 @@
+.Layout {
+  display: grid;
+  grid-template:
+    'header' min-content
+    'main';
+  min-width: $minWidth;
+  min-height: 100vh;
+}
+
+.LayoutHeader {
+  grid-area: header;
+}
+
+.LayoutMain {
+  grid-area: main;
+
+  .LayoutIframe {
+    width: 100%;
+    height: 100%;
+  }
+}

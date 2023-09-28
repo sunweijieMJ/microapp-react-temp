@@ -1,3 +1,4 @@
+import GlobalService from './modules/global';
 import UserService from './modules/user';
 
-export { UserService };
+export { UserService, GlobalService };

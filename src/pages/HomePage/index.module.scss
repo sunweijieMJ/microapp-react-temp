@@ -1,0 +1,21 @@
+.HomePage {
+  height: 100%;
+  overflow: hidden;
+
+  .LeftAside {
+    position: absolute;
+    z-index: 11;
+    top: 71px;
+    bottom: 18px;
+    left: 20px;
+    width: 400px;
+  }
+
+  .RightAside {
+    position: absolute;
+    top: 72px;
+    right: 20px;
+    bottom: 18px;
+    width: 400px;
+  }
+}

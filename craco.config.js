@@ -1,22 +1,22 @@
 const path = require('path');
 const { addAfterLoaders, loaderByName } = require('@craco/craco');
+const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const envConfig = require('./config/env');
-const { proxy } = require('./config/proxy');
+const { devServer } = require('./config/devServer');
+const { microAppsEnv } = require('./config/startEnv');
 const { splitChunks } = require('./config/splitChunks');
 
 const timeStamp = Date.now();
-const resolve = (dir) => path.join(__dirname, '.', dir);
 
 module.exports = {
   // 配置开发环境代理
-  devServer: proxy(),
+  devServer: devServer(),
   webpack: {
     // 配置路径别名
     alias: {
-      '@': resolve('src'),
+      '@': path.join(__dirname, './src'),
     },
     // 自定义webpack配置
     configure: (webpackConfig, { env, paths }) => {
@@ -24,7 +24,7 @@ module.exports = {
         webpackConfig.plugins.push(
           // 注入环境变量
           new webpack.DefinePlugin({
-            'process.env.MICRO_APP': JSON.stringify(envConfig.microApps),
+            'process.env.MICRO_APP': JSON.stringify(microAppsEnv),
           })
         );
       } else {
@@ -38,7 +38,7 @@ module.exports = {
         webpackConfig.output = {
           ...webpackConfig.output,
           // 打包目录
-          path: resolve('./dist'),
+          path: path.join(__dirname, './dist'),
           // 打包编译文件名称[hash.时间戳]
           filename: `static/js/[name].${timeStamp}.js`,
           chunkFilename: `static/js/[name].${timeStamp}.js`,
@@ -54,6 +54,13 @@ module.exports = {
           // 打包语言包
           new CopyWebpackPlugin({
             patterns: [{ from: './src/locale', to: './locale' }],
+          }),
+          // 开启gzip
+          new CompressionWebpackPlugin({
+            algorithm: 'gzip',
+            test: /\.(js|css|html|svg|json)$/,
+            threshold: 10240,
+            minRatio: 0.8,
           })
         );
 
@@ -64,6 +71,32 @@ module.exports = {
           );
         }
       }
+
+      // 配置loader
+      webpackConfig.module.rules.push(
+        {
+          test: /\.(css|scss|less)$/,
+          use: [
+            {
+              loader: 'postcss-loader',
+            },
+          ],
+        },
+        {
+          test: /\.worker\.(js|ts)$/,
+          use: [
+            {
+              loader: 'worker-loader',
+              options: {
+                filename: '[name].js',
+              },
+            },
+            {
+              loader: 'babel-loader',
+            },
+          ],
+        }
+      );
 
       // 配置扩展扩展名
       webpackConfig.resolve.extensions = [

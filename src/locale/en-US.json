@@ -1,7 +1,20 @@
 {
-  "api.fail": "fail",
-  "api.retry": "loading",
-  "api.timeout": "timeout",
-  "layout.header": "header",
-  "layout.aside": "aside"
+  "HeaderAvatar_index_44efd179": "sign out",
+  "HeaderAvatar_index_d03b4a74": "Are you sure to log out?",
+  "HeaderLogo_index_81ca0e14": "image fence",
+  "LocaleSwitch_index_78463a38": "English",
+  "LocaleSwitch_index_a7bac223": "Chinese",
+  "Login_index_08b1fa13": "please enter user name",
+  "Login_index_402d19e5": "Log in",
+  "Login_index_7c8294b3": "Please enter 8~30 digits or letters",
+  "Login_index_819767ad": "username",
+  "Login_index_a8105204": "password",
+  "Login_index_e39ffe99": "Please enter password",
+  "MohoSetting_index_4b9c3271": "reset",
+  "MohoSetting_index_e83a256e": "confirm",
+  "NotFound_index_4f4adcbf": "404",
+  "Setting_index_8e8aaafe": "Global configuration",
+  "saga_system_b12412ca": "Advanced mode is on",
+  "saga_user_71fa3bd0": "login successful",
+  "saga_user_adfb20e4": "Logout successful"
 }

@@ -4,18 +4,18 @@
 const splitChunks = {
   chunks: 'all',
   cacheGroups: {
-    layout: {
-      name: 'components-layout',
-      test: /[\\/]src[\\/]layout[\\/]/,
-      chunks: 'initial',
-      priority: 1,
-      enforce: true,
-    },
     vendors: {
       name: 'chunk-vendors',
       test: /[\\/]node_modules[\\/]/,
       chunks: 'initial',
       priority: 1,
+      enforce: true,
+    },
+    fabric: {
+      name: 'chunk-fabric',
+      test: /[\\/]node_modules[\\/]fabric[\\/]/,
+      chunks: 'initial',
+      priority: 2,
       enforce: true,
     },
     echarts: {
@@ -25,16 +25,16 @@ const splitChunks = {
       priority: 2,
       enforce: true,
     },
-    lodash: {
-      name: 'chunk-lodash',
-      test: /[\\/]node_modules[\\/]lodash[\\/]/,
+    videoJs: {
+      name: 'chunk-videoJs',
+      test: /[\\/]node_modules[\\/]video.js[\\/]/,
       chunks: 'initial',
       priority: 2,
       enforce: true,
     },
-    moment: {
-      name: 'chunk-moment',
-      test: /[\\/]node_modules[\\/]moment[\\/]/,
+    lodash: {
+      name: 'chunk-lodash',
+      test: /[\\/]node_modules[\\/]lodash[\\/]/,
       chunks: 'initial',
       priority: 2,
       enforce: true,

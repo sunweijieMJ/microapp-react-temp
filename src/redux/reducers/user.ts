@@ -1,25 +1,49 @@
 import update from 'immutability-helper';
-import { AnyAction } from 'redux';
-import { triggerLoginAction } from '../actions/user';
-import { ILoginResponse } from '@/api/types';
+import { ActionType, createReducer } from 'typesafe-actions';
+import {
+  getUserInfoAction,
+  NAMESPACE,
+  triggerLoginAction,
+  triggerLogoutAction,
+} from '../actions/user';
+import { IGetUserInfoResponse, ILoginResponse } from '@/api/types';
+
+export type IUserAction = ActionType<typeof import('../actions/user')>;
 
 export type IUserState = Readonly<{
   loginInfo?: ILoginResponse;
+  userInfo?: IGetUserInfoResponse['results'];
 }>;
 
-const initState: IUserState = {};
+const initState: IUserState = {
+  loginInfo: undefined,
+  userInfo: undefined,
+};
 
-// eslint-disable-next-line default-param-last
-const userReducer = (state = initState, action: AnyAction): IUserState => {
-  if (triggerLoginAction.success.match(action)) {
+const reducer = createReducer<IUserState, IUserAction>(initState)
+  .handleAction(triggerLoginAction.success, (state, action) => {
     return update(state, {
       loginInfo: {
         $set: action.payload,
       },
     });
-  }
+  })
+  .handleAction(triggerLogoutAction.success, (state) => {
+    return update(state, {
+      loginInfo: {
+        $set: undefined,
+      },
+    });
+  })
+  .handleAction(getUserInfoAction.success, (state, action) => {
+    return update(state, {
+      userInfo: {
+        $set: action.payload,
+      },
+    });
+  });
 
-  return state;
+const reducerModule = {
+  [NAMESPACE]: reducer,
 };
-
-export default userReducer;
+export default reducerModule;

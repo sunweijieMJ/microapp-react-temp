@@ -1,0 +1,12 @@
+'project_id': ''
+'api_token': ''
+'base_path': '.'
+'branch': 'develop'
+'preserve_hierarchy': true
+'files':
+  [
+    {
+      'source': 'src/locale/extract/zh-CN.json',
+      'translation': 'src/locale/%two_letters_code%/%original_file_name%',
+    },
+  ]

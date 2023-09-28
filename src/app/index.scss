@@ -1,0 +1,12 @@
+// 重置样式
+@import '../assets/scss/reset';
+
+// 字体文件
+@import '../assets/scss/font';
+
+html,
+body,
+#root {
+  background-color: $baseBgColor;
+  color: $baseTextColor;
+}

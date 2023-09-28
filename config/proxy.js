@@ -1,20 +1,14 @@
-/**
- * 开发代理
- */
-const proxy = () => () => {
-  return {
-    https: false,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-    },
-    proxy: {
-      '/v2ex/': {
-        target: 'https://www.v2ex.com',
-        changeOrigin: true,
-        pathRewrite: { '^/v2ex': '/' },
-      },
-    },
-  };
-};
+const { protocol, host } = require('./host');
 
-module.exports.proxy = proxy;
+/**
+ * 开发环境代理
+ */
+module.exports.proxy = {
+  '/mockService/': {
+    target: `${protocol}//${host.MOCK}`,
+    changeOrigin: true,
+    pathRewrite: {
+      '^/mockService/': '',
+    },
+  },
+};

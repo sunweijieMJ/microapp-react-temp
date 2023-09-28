@@ -1,7 +1,5 @@
 import { Effect } from 'redux-saga/effects';
 
-export {};
-
 declare global {
   /**
    * 用于推导saga call, select等effect的返回类型
@@ -24,13 +22,13 @@ declare global {
   type SR<T> = SagaEffectReturn<T>;
 
   /**
-   * 获取一个组件的参数类型
-   */
-  export type InferProps<T extends React.ComponentType> =
-    T extends React.ComponentType<infer K> ? K : never;
-
-  /**
    * 获取对象值的类型
    */
   export type ValueOf<T> = T[keyof T];
+
+  /**
+   * 互斥类型
+   */
+  export type Mutex<IRequired, IPickOnlyOne> = IRequired &
+    RequireOnlyOne<IPickOnlyOne>;
 }

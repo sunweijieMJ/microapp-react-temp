@@ -1,4 +1,5 @@
 import type { IResponse } from './index';
+import type { IUserInfo } from '@/interface';
 
 export interface ILoginRequest {
   name: string;
@@ -6,6 +7,9 @@ export interface ILoginRequest {
 }
 
 export interface ILoginResponse extends IResponse {
-  face_platform_session_id: string;
   session_id: string;
+}
+
+export interface IGetUserInfoResponse extends IResponse {
+  results: IUserInfo;
 }

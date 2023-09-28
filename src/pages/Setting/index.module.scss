@@ -1,0 +1,21 @@
+.container {
+  display: grid;
+  grid-template-areas: 'nav main';
+  grid-template-columns: min-content 1fr;
+  height: 100%;
+
+  .LeftNav {
+    grid-area: nav;
+
+    .LeftNavMenu {
+      height: 100%;
+    }
+  }
+
+  .RightMain {
+    grid-area: main;
+    height: calc(100vh - 100px);
+    padding: 20px;
+    overflow-y: auto;
+  }
+}

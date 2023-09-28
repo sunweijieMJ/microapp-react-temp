@@ -1,23 +1,21 @@
-import { message } from 'antd';
 import axios from 'axios';
-import { createIntl, createIntlCache } from 'react-intl';
-import Locale from '@/plugins/locale';
-import storage from '@/utils/storage';
+import { v4 as uuidv4 } from 'uuid';
+import { ERROR_CODE_SESSION_INVALID } from '@/utils/contant/errorCode';
+import { removeLoginToken } from '@/utils/tools/user';
 
 const BASE_URL = window.location.origin;
-
-const cache = createIntlCache();
-const intl = createIntl(Locale, cache);
-
 const TIMEOUT = 10 * 60 * 1000;
 
-// axios 实例
+/**
+ * axios拦截器实例
+ */
 const instance = axios.create({
   baseURL: BASE_URL,
   timeout: TIMEOUT,
   responseType: 'json',
   headers: {
-    'Content-Type': 'application/json;charset=UTF-8',
+    'Content-Type': 'application/json;charset=utf-8',
+    'frontend-request-id': uuidv4(),
   },
 });
 
@@ -25,9 +23,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
   (request) => {
     // 默认headers
-    const newHeaders: any = {
-      session_id: storage('localStorage').get('session_id'),
-    };
+    const newHeaders: any = {};
 
     // 设置新的参数
     request.headers = { ...request.headers, ...newHeaders };
@@ -42,12 +38,13 @@ instance.interceptors.request.use(
 // 添加响应拦截器
 instance.interceptors.response.use(
   (response) => {
-    const code = response?.data?.rtn;
-    switch (code) {
-      case '20312':
-        // session失效
-        storage('localStorage').remove('session_id');
-        window.location.href = `/Login`;
+    const errorCode = response?.data?.rtn;
+    const redirectUrl = encodeURIComponent(window.location.href);
+
+    switch (errorCode) {
+      case ERROR_CODE_SESSION_INVALID:
+        removeLoginToken();
+        window.location.href = `/Login?redirect=${redirectUrl}`;
         break;
       default:
         break;
@@ -56,19 +53,11 @@ instance.interceptors.response.use(
     return response;
   },
   async (error) => {
-    const { response } = error;
-    const redirectUrl = encodeURIComponent(window.location.href);
+    const response = error.response;
     // 根据返回的code值来做不同的处理(和后端约定)
     switch (response?.status) {
       case 401:
         // token失效
-        message.error(
-          intl.formatMessage({
-            id: 'api_instance_395c1c03',
-            defaultMessage: '请求超时了',
-          })
-        );
-        window.location.href = `/Login?redirect=${redirectUrl}`;
         break;
       case 403:
         // 没有权限
@@ -78,15 +67,6 @@ instance.interceptors.response.use(
         break;
       case 500:
         // 服务端错误
-        message.error(
-          intl.formatMessage({
-            id: 'api_instance_41778e2e',
-            defaultMessage: '请求失败了',
-          })
-        );
-        break;
-      case 503:
-        // 服务端错误
         break;
       default:
         break;
@@ -95,7 +75,7 @@ instance.interceptors.response.use(
     /**
      * 超时重新请求
      */
-    const { config } = error;
+    const config = error.config;
 
     // 再次请求次数,请求间隔时间
     const RETRY_COUNT = config?.headers?.retryCount ?? 0;

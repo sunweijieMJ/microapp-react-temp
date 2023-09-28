@@ -3,14 +3,19 @@ const { defineConfig } = require('eslint-define-config');
 const rules = {
   'no-console':
     process.env.NODE_ENV === 'production'
-      ? ['error', { allow: ['warn', 'error'] }]
+      ? ['warn', { allow: ['warn', 'error'] }]
       : 'off', // 禁用 console
   'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off', // 禁用 debugger
   'import/no-extraneous-dependencies': 'off', // 引入path报错
-  'prettier/prettier': [
+  'prettier/prettier': 'off',
+  /**
+   * formatjs
+   */
+  'formatjs/enforce-id': [
     'error',
     {
-      endOfLine: 'auto',
+      idInterpolationPattern: '[folder]_[name]_[contenthash:8]',
+      idWhitelist: [],
     },
   ],
 
@@ -19,6 +24,7 @@ const rules = {
    */
   '@typescript-eslint/no-explicit-any': 'off', // any警告
   '@typescript-eslint/no-non-null-assertion': 'off', // 禁止非空断言
+  '@typescript-eslint/ban-ts-comment': 'warn',
   '@typescript-eslint/no-use-before-define': ['off'], // 禁止定义前使用
 
   /**
@@ -36,7 +42,6 @@ const rules = {
   'no-else-return': ['error', { allowElseIf: true }], // 禁止在else之前返回
   'consistent-return': 'off', // 要求return语句一致返回
   'no-restricted-syntax': ['error', 'LabeledStatement', 'WithStatement'], // 禁止指定的语法
-  'import/no-unresolved': ['error', { ignore: ['.css$'] }], // 忽略.css后缀名检查
   'lines-between-class-members': [
     'error',
     'always',
@@ -45,6 +50,8 @@ const rules = {
   'no-nested-ternary': 'off', // 不允许嵌套的三元表达式
   'no-continue': 'off', // 不允许continue
   'no-control-regex': ['off'], // 禁止在正则表达式中使用控制字符
+  'default-param-last': 'off', // 默认参数最后
+  camelcase: ['off'], // 强制执行驼峰命名约定
 
   'sort-imports': [
     // import 排序
@@ -87,11 +94,10 @@ module.exports = defineConfig({
     'airbnb-base',
     'plugin:@typescript-eslint/recommended',
     'react-app',
-    'react-app/jest',
     'plugin:markdown/recommended',
     'plugin:prettier/recommended',
   ],
-  plugins: ['@typescript-eslint', 'prettier', 'import', 'html'],
+  plugins: ['@typescript-eslint', 'prettier', 'import', 'html', 'formatjs'],
   overrides: [
     {
       files: ['*.js'],
@@ -123,5 +129,17 @@ module.exports = defineConfig({
       },
     },
   },
+
+  ignorePatterns: [
+    '**/*.js',
+    'build/',
+    'dist/',
+    'node_modules/',
+    'configs/',
+    'lib/',
+    'scripts/',
+    'public/',
+    'packages/',
+  ],
   rules,
 });

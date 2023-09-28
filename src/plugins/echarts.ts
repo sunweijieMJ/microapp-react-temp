@@ -43,5 +43,5 @@ echarts.use([
   CanvasRenderer,
 ]);
 
-// 导出echarts
+// 按需加载echarts
 export default echarts;
