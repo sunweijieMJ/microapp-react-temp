@@ -1,4 +1,4 @@
-FROM it-artifactory.yitu-inc.com/docker-local/ai-center-web/nginx-builder:dba226d
+FROM xxx
 
 COPY dist /usr/share/nginx/html/
 
