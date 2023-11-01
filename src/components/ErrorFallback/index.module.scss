@@ -1,0 +1,31 @@
+.ErrorFallbackWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: $baseBgColor;
+}
+
+.ErrorFallbackTitle {
+  font-size: 40px;
+}
+
+.ErrorFallbackMessage {
+  margin-top: 20px;
+  color: red;
+  font-size: 40px;
+  text-align: center;
+}
+
+.ErrorFallbackBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: $colorPrimary;
+  color: $baseTextColor;
+  font-size: 24px;
+  cursor: pointer;
+}

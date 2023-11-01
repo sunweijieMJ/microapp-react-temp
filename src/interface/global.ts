@@ -36,4 +36,5 @@ export interface IGlobalConfig {
   watermark: {
     text: string;
   };
+  loopInterval: number;
 }

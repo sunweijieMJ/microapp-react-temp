@@ -3,13 +3,19 @@ import type { SagaMiddleware } from 'redux-saga';
 import { all, fork } from 'redux-saga/effects';
 import { getModules } from '../modules';
 import globalSaga from './global';
+import loopSaga from './loop';
 import systemSaga from './system';
 import userSaga from './user';
 
 const subModules = getModules();
 
 export default function* rootSaga() {
-  yield all([fork(systemSaga), fork(userSaga), fork(globalSaga)]);
+  yield all([
+    fork(systemSaga),
+    fork(userSaga),
+    fork(globalSaga),
+    fork(loopSaga),
+  ]);
 }
 
 /**

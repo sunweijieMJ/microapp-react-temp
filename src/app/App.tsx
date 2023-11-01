@@ -16,11 +16,15 @@ import Loading from '@/components/Loading';
 import dayjs from '@/plugins/dayjs';
 import { Locale } from '@/plugins/locale';
 import configureStore from '@/redux';
-import { getGlobalConfigAction } from '@/redux/actions/global';
+import {
+  triggerConfigLoopAction,
+  updateConfigLoopAction,
+} from '@/redux/actions/loop';
 import {
   localeSymbolSelector,
   themeSymbolSelector,
 } from '@/redux/selector/system';
+import { LOOP_STATUS_ENUM } from '@/redux/utils/loop';
 import { ANTD_THEME, CookieLocale } from '@/utils/contant/global';
 import storage from '@/utils/storage';
 import { flattenObj, os } from '@/utils/tools/global';
@@ -49,7 +53,12 @@ const AppContainer = () => {
 
   // 获取全局配置
   useEffect(() => {
-    dispatch(getGlobalConfigAction.request());
+    // 触发轮询
+    dispatch(updateConfigLoopAction({ status: LOOP_STATUS_ENUM.CANCELED }));
+    dispatch(triggerConfigLoopAction());
+    return () => {
+      dispatch(updateConfigLoopAction({ status: LOOP_STATUS_ENUM.CANCELED }));
+    };
   }, [dispatch]);
 
   useEffect(() => {
@@ -93,11 +102,11 @@ const AppContainer = () => {
 };
 
 root.render(
-  <Provider store={store}>
-    <PersistGate loading={<Loading />} persistor={persistor}>
-      <ErrorBoundary FallbackComponent={ErrorFallback}>
+  <ErrorBoundary FallbackComponent={ErrorFallback}>
+    <Provider store={store}>
+      <PersistGate loading={<Loading />} persistor={persistor}>
         <AppContainer />
-      </ErrorBoundary>
-    </PersistGate>
-  </Provider>
+      </PersistGate>
+    </Provider>
+  </ErrorBoundary>
 );

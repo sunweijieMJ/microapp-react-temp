@@ -1,6 +1,11 @@
 import React from 'react';
 import { FallbackProps } from 'react-error-boundary';
+import cssModule from './index.module.scss';
 
+/**
+ * @property error
+ * @property resetErrorBoundary
+ */
 type IProps = FallbackProps;
 
 /**
@@ -8,11 +13,19 @@ type IProps = FallbackProps;
  */
 const ErrorFallback: React.FC<IProps> = (props) => {
   const { error, resetErrorBoundary } = props;
+
   return (
-    <div>
-      <h2>Something went wrong</h2>
-      <p>{error && error.toString()}</p>
-      <button onClick={resetErrorBoundary}>Try again</button>
+    <div className={cssModule.ErrorFallbackWrap}>
+      <h2 className={cssModule.ErrorFallbackTitle}>Something went wrong</h2>
+      <p className={cssModule.ErrorFallbackMessage}>
+        {error && error.toString()}
+      </p>
+      <button
+        className={cssModule.ErrorFallbackBtn}
+        onClick={resetErrorBoundary}
+      >
+        Try again
+      </button>
     </div>
   );
 };
