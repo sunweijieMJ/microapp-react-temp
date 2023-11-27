@@ -22,8 +22,9 @@ function* getRealDateTimeWorker() {
  */
 function* getGlobalConfigWorker() {
   try {
-    const res: SagaEffectReturn<typeof GlobalService.getGlobalConfig> =
-      yield call(GlobalService.getGlobalConfig);
+    const res: SR<typeof GlobalService.getGlobalConfig> = yield call(
+      GlobalService.getGlobalConfig
+    );
     if (res.data.rtn !== 0) {
       message.error(res.data.message);
     } else {

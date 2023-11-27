@@ -40,13 +40,10 @@ function* triggerLoginWorker(
       name,
       password,
     } = action.payload;
-    const res: SagaEffectReturn<typeof UserService.login> = yield call(
-      UserService.login,
-      {
-        name,
-        password,
-      }
-    );
+    const res: SR<typeof UserService.login> = yield call(UserService.login, {
+      name,
+      password,
+    });
     if (res.data.rtn !== 0) {
       message.error(res.data.message);
       if (navigate) {
@@ -79,9 +76,7 @@ function* triggerLogoutWorker(
 ) {
   try {
     const { navigate, targetUrl = LOGOUT_DEFAULT_ROUTE } = action.payload;
-    const res: SagaEffectReturn<typeof UserService.logout> = yield call(
-      UserService.logout
-    );
+    const res: SR<typeof UserService.logout> = yield call(UserService.logout);
     if (res.data.rtn !== 0) {
       message.error(res.data.message);
     } else {
@@ -107,7 +102,7 @@ function* triggerLogoutWorker(
  */
 function* getUserInfoWorker() {
   try {
-    const res: SagaEffectReturn<typeof UserService.getUserInfo> = yield call(
+    const res: SR<typeof UserService.getUserInfo> = yield call(
       UserService.getUserInfo
     );
     if (res.data.rtn !== 0) {

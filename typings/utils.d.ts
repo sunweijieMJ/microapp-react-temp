@@ -1,30 +1,22 @@
-import { Effect } from 'redux-saga/effects';
+import { SagaReturnType } from 'redux-saga/effects';
 
 declare global {
   /**
-   * 用于推导saga call, select等effect的返回类型
-   * @example const res:SR<typeof api> = yield call(api);
+   * saga返回值类型(SagaReturnType)
    */
-  type SagaEffectReturn<T> = T extends (...args: any[]) => any
-    ? ReturnType<T> extends Generator<any, infer K1, any>
-      ? Exclude<K1, Effect>
-      : ReturnType<T> extends PromiseLike<infer K2>
-      ? K2
-      : ReturnType<T>
-    : never;
+  type SR<T extends (...args: any[]) => any> = SagaReturnType<T>;
 
   /**
-   * alias of SagaEffectReturn
-   * 用于推导saga call, select等effect的返回类型
-   * @example const res:SR<typeof api> = yield call(api);
-   * @example const state:SR<typeof stateSelector> = yield select(stateSelector);
-   */
-  type SR<T> = SagaEffectReturn<T>;
-
-  /**
-   * 获取对象值的类型
+   * 对象值的类型
    */
   export type ValueOf<T> = T[keyof T];
+
+  /**
+   * 类型所有项可选
+   */
+  type DeepPartial<T> = {
+    [K in keyof T]?: T[K] extends object ? DeepPartial<T[K]> : T[K];
+  };
 
   /**
    * 互斥类型

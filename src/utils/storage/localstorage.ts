@@ -1,33 +1,11 @@
-import { SheetName } from '@/interface';
-
-/**
- * 表格表头key集合
- */
-const sheetTitleKeys = (Object.keys(SheetName) as (keyof typeof SheetName)[])
-  .filter((key) => isNaN(Number(key)))
-  .map((key) => `${key}-sheetKeyMaps` as const);
-
-/**
- * 表格数据key集合
- */
-const sheetDataKeys = (Object.keys(SheetName) as (keyof typeof SheetName)[])
-  .filter((key) => isNaN(Number(key)))
-  .map((key) => `${key}-sheetData` as const);
-
-/**
- * 显示声明localStorage的键
- */
-export const LocaleStorageKeys = [
-  'session_id', // 登录态
-  ...sheetTitleKeys,
-  ...sheetDataKeys,
-] as const;
-type LocaleStorageKeysType = (typeof LocaleStorageKeys)[number];
+import { localStorageKey } from './keyMap';
 
 export type ExpireObj = {
   value: string;
   time: string | number | Date;
 };
+
+type LocaleStorageKeysType = (typeof localStorageKey)[number];
 
 /**
  * @description LocalStorage的封装
@@ -102,6 +80,24 @@ class LocalStorageAPI {
       return '';
     }
     return '';
+  }
+
+  /**
+   * @description 获取localStorage所有key值
+   */
+  static keys() {
+    const keyList = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      keyList.push(localStorage.key(i));
+    }
+    return keyList;
+  }
+
+  /**
+   * @description 清空localStorage
+   */
+  static clear() {
+    localStorage.clear();
   }
 }
 

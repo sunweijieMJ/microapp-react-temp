@@ -98,7 +98,7 @@ module.exports = {
         }
       );
 
-      // 配置扩展扩展名
+      // 配置扩展名
       webpackConfig.resolve.extensions = [
         ...webpackConfig.resolve.extensions,
         ...['.scss', '.less'],

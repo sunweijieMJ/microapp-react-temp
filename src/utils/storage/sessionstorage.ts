@@ -1,10 +1,6 @@
-/**
- * 显示声明sessionStorage的键
- */
-export const SessionStorageKeys = [
-  'session_id', // 登录态
-] as const;
-type SessionStorageKeysType = (typeof SessionStorageKeys)[number];
+import { sessionStorageKey } from './keyMap';
+
+type SessionStorageKeysType = (typeof sessionStorageKey)[number];
 
 /**
  * @description SessionStorage的封装
@@ -33,6 +29,24 @@ class SessionStorageAPI {
    */
   static remove(key: SessionStorageKeysType) {
     return sessionStorage.removeItem(key);
+  }
+
+  /**
+   * @description 获取sessionStorage所有key值
+   */
+  static keys() {
+    const keyList = [];
+    for (let i = 0; i < sessionStorage.length; i++) {
+      keyList.push(sessionStorage.key(i));
+    }
+    return keyList;
+  }
+
+  /**
+   * @description 清空sessionStorage
+   */
+  static clear() {
+    sessionStorage.clear();
   }
 }
 

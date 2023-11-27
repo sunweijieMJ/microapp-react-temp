@@ -22,7 +22,7 @@ function* triggerAdvanceModeWorker() {
 
   while (true) {
     yield take(triggerAdvanceModeAction.request);
-    const userInfo: SagaEffectReturn<typeof userInfoSelector> = yield select(
+    const userInfo: SR<typeof userInfoSelector> = yield select(
       userInfoSelector
     );
     // TODO可根据用户角色来限制使用高级模式
@@ -40,8 +40,9 @@ function* triggerAdvanceModeWorker() {
         break;
       }
     }
-    const advanceMode: SagaEffectReturn<typeof advanceModeSelector> =
-      yield select(advanceModeSelector);
+    const advanceMode: SR<typeof advanceModeSelector> = yield select(
+      advanceModeSelector
+    );
     // 开启高级模式
     if (!triggerCountDown && !advanceMode) {
       yield put(triggerAdvanceModeAction.success(true));

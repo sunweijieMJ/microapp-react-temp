@@ -12,8 +12,10 @@ function* putGlobalConfigWorker(
 ) {
   try {
     const { payload } = action;
-    const res: SagaEffectReturn<typeof GlobalService.putGlobalConfig> =
-      yield call(GlobalService.putGlobalConfig, payload);
+    const res: SR<typeof GlobalService.putGlobalConfig> = yield call(
+      GlobalService.putGlobalConfig,
+      payload
+    );
     if (res.data.rtn !== 0) {
       message.error(res.data.message);
     } else {

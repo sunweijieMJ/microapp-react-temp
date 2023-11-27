@@ -1,11 +1,6 @@
-/**
- * 显示声明Cookie的键
- */
-export const CookieKeys = [
-  'session_id', // session_id
-  'currentLanguage', // 当前语言
-] as const;
-type CookieKeysType = (typeof CookieKeys)[number];
+import { cookieKey } from './keyMap';
+
+type CookieKeysType = (typeof cookieKey)[number];
 
 /**
  * @description Cookie的封装
@@ -56,6 +51,39 @@ class CookieAPI {
    */
   static remove(key: CookieKeysType) {
     CookieAPI.set(key, '', new Date(0).toUTCString());
+  }
+
+  /**
+   * @description 获取cookie所有key值
+   */
+  static keys() {
+    const cookies = document.cookie.split('; ');
+    const keyList = [];
+    for (let i = 0; i < cookies.length; i++) {
+      const cookieKey = cookies[i].split('=')[0];
+      keyList.push(cookieKey);
+    }
+    return keyList;
+  }
+
+  /**
+   * @description 清空cookie
+   */
+  static clear() {
+    const cookies = document.cookie.split(';');
+    const expires = new Date(0).toUTCString();
+    const pathBits = window.location.pathname.split('/');
+
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i];
+      const eqPos = cookie.indexOf('=');
+      const name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie;
+      let path = '';
+      for (let j = 0; j < pathBits.length; j++) {
+        path += (path.substring(-1) !== '/' ? '/' : '') + pathBits[j];
+        document.cookie = `${name}=; expires=${expires}; path=${path}`;
+      }
+    }
   }
 }
 
