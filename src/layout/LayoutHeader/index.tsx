@@ -63,7 +63,7 @@ LayoutHeader.defaultProps = {
   className: '',
   showHeaderLogo: true,
   showHeaderNav: true,
-  showHeaderDateTime: true,
+  showHeaderDateTime: false,
   showThemeSwitch: true,
   showLocaleSwitch: true,
   showHeaderSetting: true,

@@ -19,7 +19,7 @@ export type MenuList = {
   children: MenuList[];
 };
 
-export const microApps: MicroApp[] = [
+export const microAppList: MicroApp[] = [
   {
     name: 'micro-fp',
     activeRule: ['/micro-fp'],
@@ -51,4 +51,4 @@ export const menuList = [
   },
 ];
 
-export default microApps;
+export default microAppList;

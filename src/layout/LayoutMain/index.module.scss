@@ -13,9 +13,18 @@
 
 .LayoutMain {
   grid-area: main;
+  overflow-y: auto;
+  transition: width 0.3s;
+  background-color: #f6f7fb;
+  scroll-behavior: smooth;
+  will-change: width;
 
   .LayoutIframe {
     width: 100%;
     height: 100%;
+  }
+
+  &:not(.active-app) {
+    z-index: -1;
   }
 }
